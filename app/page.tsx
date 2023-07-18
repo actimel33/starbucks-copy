@@ -11,12 +11,13 @@ import classes from './styles.module.css';
 export const revalidate = 0;
 
 export default async function Home() {
-  const { textCenter, textSm, textBold, textRegular, bottomSection, bottomSectionTextContainer } = classes;
+  const { textCenter, textSm, textRegular, bottomSection, bottomSectionTextContainer } = classes;
   const data = await fetchBanners();
 
   return (
     <>
-      {data?.banners?.map(banner => {
+      {/* {data?.banners?.map(banner => { */}
+      {data?.map(banner => {
         return <Banner {...banner} key={banner.id} buttonVariant={banner.buttonVariant as TButtonVariants} />;
       })}
 

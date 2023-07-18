@@ -39,6 +39,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const isLoading = status === 'loading';
+
   const handleHamburgerClick = useCallback(() => {
     setIsMenuOpen(state => !state);
     document.body.classList.toggle('no-scroll');

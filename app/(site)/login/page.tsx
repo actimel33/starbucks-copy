@@ -1,22 +1,20 @@
 'use client';
 
-import { redirect, useSearchParams } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
+import { Routes } from '@app/types.d';
 import LoginForm from '@components/molecules/login-form';
 import PageLayout from '@components/organisms/page-layout';
 
 import classes from './styles.module.css';
 
 export default function Login() {
-  const { data, status } = useSession();
-  const searchParams = useSearchParams();
+  const { data: session, status } = useSession();
   const { container, textSection, text } = classes;
 
-  const callbackUrl = searchParams.get('callbackUrl') || '';
-
-  if (data && callbackUrl) {
-    redirect(callbackUrl);
+  if (session) {
+    redirect(Routes.HOME_PAGE);
   }
 
   if (status === 'loading') {
