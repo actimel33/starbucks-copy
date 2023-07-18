@@ -1,95 +1,57 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import clsx from 'clsx';
 
-export default function Home() {
+import Link from 'next/link';
+
+import { TButtonVariants } from '@components/atoms/button/button';
+import Banner from '@components/molecules/banner';
+import { fetchBanners } from '@lib/fetchBanners';
+
+import classes from './styles.module.css';
+
+export const revalidate = 0;
+
+export default async function Home() {
+  const { textCenter, textSm, textBold, textRegular, bottomSection, bottomSectionTextContainer } = classes;
+  const data = await fetchBanners();
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <>
+      {data?.banners?.map(banner => {
+        return <Banner {...banner} key={banner.id} buttonVariant={banner.buttonVariant as TButtonVariants} />;
+      })}
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+      <section className={clsx(bottomSection)}>
+        <div className={bottomSectionTextContainer}>
+          <p className={clsx(textCenter, textSm, textRegular)}>
+            *From 7/13- 7/19, enjoy $10 off your Starbucks order of $20 or more through the DoorDash app, excluding
+            taxes and fees. Valid 12pm to 3pm for DashPass members only. Offer valid for one (1) redemption per
+            customer. Restrictions and other taxes/fees/gratuity still apply. See DoorDash app for details and location
+            availability. Fees subject to change. Menu limited. Restricted delivery area. Available at participating
+            locations only. All deliveries subject to availability. Must have or create a valid DoorDash account with
+            valid form of accepted payment on file. No cash value. Non-transferable. Prices for Starbucks® items
+            purchased through DoorDash may be higher than as marked or posted in stores. May not be combined with other
+            offers, discounts, or promotions. See DoorDash terms and conditions at{' '}
+            <Link href="/">https://help.doordash.com/consumers/s/article/offer-terms-conditions</Link>.
           </p>
-        </a>
-      </div>
-    </main>
-  )
+        </div>
+      </section>
+      <section className={clsx(bottomSection)}>
+        <div className={bottomSectionTextContainer}>
+          <p className={clsx(textCenter, textSm, textRegular)}>
+            **Starbucks Rewards is available at participating stores. Some restrictions apply. See <br />
+            <Link href="/">https://starbucks.com/rewards</Link>
+          </p>
+        </div>
+      </section>
+      <section className={clsx(bottomSection)}>
+        <div className={bottomSectionTextContainer}>
+          <p className={clsx(textCenter, textSm, textRegular)}>
+            ***After your two-month free trial, exclusive to Starbucks® Rewards members, the subscription renews
+            automatically at $69.99 USD for an annual subscription to Headspace. You can cancel at any time. This offer
+            is for new and returning Headspace users only.
+          </p>
+        </div>
+      </section>
+    </>
+  );
 }

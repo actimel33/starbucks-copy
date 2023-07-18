@@ -1,0 +1,148 @@
+
+.formContainer {
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.07), 0 4px 5px rgba(0,0,0,.06), 0 1px 10px rgba(0,0,0,.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.formPadding {
+  padding: 32px;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.hintText {
+  text-align: start;
+}
+
+ .labelInput {
+  position: relative;
+  margin-top: 2rem;
+}
+
+.inputField {
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.4);
+  border-radius: 8px;
+  outline: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 12px 16px;
+  background-color: #fff;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.labelField {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  width: 50%;
+  height: 20px;
+  pointer-events: none;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.passwordLabel {
+  width: 23%;
+}
+
+.labelField::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+}
+
+.labelField span {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.inputField:focus + .labelField ,
+.inputField:valid + .labelField {
+  transform: translateY(-110%);
+}
+
+.inputField:focus + .labelField span ,
+.inputField:valid + .labelField span {
+  transform: translateX(6px);
+
+}
+
+.errorSection {
+  text-align: start;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.errorSection img {
+  margin-right: 8px;
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.inputNotValid {
+  color: #d62b1f;
+}
+
+
+.inputValid {
+  color: var(--color-primary);
+}
+
+.redBorder {
+  border-color: #d62b1f;
+}
+
+.linkBlock {
+  text-align: left;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.linkBlock a {
+  text-align: left;
+  margin-bottom: 8px;
+  display: block;
+  color: var(--color-primary);
+}
+
+.signinContainer {
+  padding-top: 32px;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signinContainer button {
+  padding: 18px 24px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.serverError {
+  color: #d62b1f;
+}
+
+@media (min-width: 768px) {
+  .fieldBase {
+      margin-left: calc(.8rem*-1);
+      margin-right: calc(.8rem*-1);
+      padding-left: var(.8rem);
+      padding-right: var(.8rem);
+  }
+}

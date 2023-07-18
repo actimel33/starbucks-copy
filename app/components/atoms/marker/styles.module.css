@@ -1,0 +1,19 @@
+
+.navbarNavItemLink {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.navbarNavItemLink:hover {
+  color: var(--color-primary)
+}
+
+.navBarRightMarkerLink:hover img {
+  filter: invert(27%) sepia(20%) saturate(2412%) hue-rotate(116deg) brightness(98%) contrast(101%);
+}
+
+.marker {
+  margin-right: 10px;
+}

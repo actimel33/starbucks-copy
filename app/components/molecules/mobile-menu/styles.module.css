@@ -1,0 +1,38 @@
+.mobileMenu {
+  z-index: 100;
+  background-color: white;
+  top: 95px;
+  right: 0;
+  position: fixed;
+  width: 90%;
+  height: 100%;
+  color: #000;
+  padding: 30px;
+  transition: all 0.5s;
+}
+
+.mobileMenu div {
+  margin-top: 20px;
+}
+
+.mobileMenuList a {
+  text-decoration: none;
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+.mobileMenuList a:hover {
+ color: var(--color-primary)
+}
+
+.mobileMenuList {
+  line-height: 3;
+  border-bottom: #777 solid 1px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.hidden {
+  transform: translateX(100%);
+}
+

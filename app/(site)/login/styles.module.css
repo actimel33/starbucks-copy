@@ -1,0 +1,27 @@
+.container {
+ text-align: center;
+}
+
+.textSection {
+  max-width: 500px;
+  padding: 48px 40px;
+  margin: 0 auto;
+}
+
+.text {
+  font-weight: 700;
+  line-height: 1.38;
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  .text {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 375px) {
+  .text {
+    font-size: 1.4rem;
+  }
+}

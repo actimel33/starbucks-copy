@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  banners        Banners[]
+}
+
+model Banners {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  backgroundCollor  String
+  imageUrl          String
+  imageHeight       Int
+  isReverted        Boolean
+  bannerHeadingText String
+  bannerText        String
+  bannerTextCollor  String
+  buttonVariant     String
+  buttonText        String
+  isSpecialBanner   Boolean
+  userId            String   @db.ObjectId
+  createdAt         DateTime @default(now())
+  clickCounter      Int?     @default(0)
+  clickInformation  String?
+  position          Int      @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

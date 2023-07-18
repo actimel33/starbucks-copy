@@ -1,0 +1,56 @@
+.textCenter {
+  text-align: center;
+}
+
+.textSm {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+
+.textRegular {
+  font-weight: 400;
+}
+
+.bottomSection {
+  margin-bottom: 0;
+  padding-top: 3.2rem;
+  padding-bottom: 3.2rem;
+}
+
+.bottomSectionTextContainer {
+  max-width: 60%;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+  overflow-wrap: break-word;
+}
+
+
+
+
+
+/* Media queries */
+@media (max-width: 768px) {
+  .bottomSectionTextContainer {
+    max-width: 100%;
+    padding: 0 1.6rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .textXl {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .bottomSection {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+  }
+ 
+}
+

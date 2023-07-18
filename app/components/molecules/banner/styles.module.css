@@ -1,0 +1,96 @@
+
+.box {
+  margin-bottom: 30px;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textBold {
+  font-weight: 600;
+}
+
+.pySm {
+  padding: 10px 0;
+}
+
+.pyMd {
+  padding: 20px 0;
+}
+
+.pyLg {
+  padding: 40px 0;
+}
+
+.boxInner {
+  max-width: 83%;
+  margin: auto;
+}
+
+.boxInner p {
+  margin-bottom: 32px;
+}
+
+.textXl {
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.textLg {
+  font-size: 24px;
+  line-height: 36px;
+  margin-bottom: 18px;
+}
+
+.textMd {
+  font-size: 19px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.textSm {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.imageContainer {
+  position: relative;
+  height: auto;
+}
+
+@media (min-width: 1440px) {
+  .box {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* Grid styles */
+.gridCol2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gridReversed :first-child {
+  order: 2;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .gridCol2 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .gridReversed :first-child {
+    order: 0;
+  }
+  .imageContainer {
+    min-height: 300px !important;
+    height: auto;
+  }
+  
+
+}
