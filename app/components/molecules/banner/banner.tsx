@@ -4,21 +4,28 @@ import { useCallback } from 'react';
 
 import Image from 'next/image';
 
-import { IAdminFormDefaultValues } from '@app/(site)/admin/page';
 import Button from '@components/atoms/button';
-// import { fetchBanners } from '@lib/fetchBanners';
+import { TButtonVariants } from '@components/atoms/button/button';
 
 import classes from './styles.module.css';
 
-export const revalidate = 10;
-
-// export async function generateStaticParams() {
-//   const data = await fetchBanners();
-
-//   return data?.banners || [];
-// }
+export interface IBannerProps {
+  backgroundCollor: string;
+  bannerTextCollor: string;
+  buttonVariant: TButtonVariants;
+  imageUrl: string;
+  imageHeight: number;
+  isReverted: boolean;
+  isSpecialBanner: boolean;
+  buttonText: string;
+  bannerHeadingText: string;
+  bannerText: string;
+  position: number;
+  id: string;
+}
 
 export default function Banner({
+  id,
   isReverted = false,
   isSpecialBanner = false,
   backgroundCollor,
@@ -30,7 +37,7 @@ export default function Banner({
   bannerHeadingText,
   bannerText,
   ...rest
-}: IAdminFormDefaultValues) {
+}: IBannerProps) {
   const {
     box,
     gridCol2,
@@ -48,12 +55,14 @@ export default function Banner({
 
   const handleOnClick = useCallback(async () => {
     const infoOnTheUser = {
+      bannerHeadingText,
+      bannerText,
+      buttonText,
       width: window.innerWidth,
       height: window.innerHeight,
       userAgent: window.navigator.userAgent,
-      userId: rest.userId,
-      bannerId: rest.bannerId,
       position: rest.position,
+      bannerId: id,
     };
 
     fetch('/api/banner', {
@@ -63,7 +72,7 @@ export default function Banner({
         'Content-Type': 'application/json',
       },
     });
-  }, [rest]);
+  }, [bannerHeadingText, bannerText, buttonText, id, rest.position]);
 
   return (
     <section

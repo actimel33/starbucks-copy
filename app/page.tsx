@@ -16,7 +16,6 @@ export default async function Home() {
 
   return (
     <>
-      {/* {data?.banners?.map(banner => { */}
       {data?.map(banner => {
         return <Banner {...banner} key={banner.id} buttonVariant={banner.buttonVariant as TButtonVariants} />;
       })}

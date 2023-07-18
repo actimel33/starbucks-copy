@@ -6,9 +6,10 @@ import type { FieldValues } from 'react-hook-form';
 
 import Button from '@components/atoms/button';
 import { TButtonVariants } from '@components/atoms/button/button';
+import { IBannerProps } from '@components/molecules/banner/banner';
 import PageLayout from '@components/organisms/page-layout';
 
-import { addBanner } from './actions';
+import { addBannerAction } from './actions';
 import classes from './styles.module.css';
 
 const buttonVariants = ['white', 'light', 'dark', 'green'];
@@ -24,8 +25,6 @@ export interface IAdminFormDefaultValues {
   buttonText: string;
   bannerHeadingText: string;
   bannerText: string;
-  userId?: string;
-  bannerId?: string;
   position?: number;
 }
 
@@ -49,7 +48,7 @@ export default function Admin() {
   });
 
   const onSubmitAction = useCallback(async (formValues: FieldValues) => {
-    addBanner(formValues);
+    addBannerAction(formValues as IBannerProps);
   }, []);
 
   return (

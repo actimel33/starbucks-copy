@@ -13,26 +13,35 @@ export async function POST(req: NextRequest) {
     ip = forwardedFor.split(',').at(0) ?? 'Unknown';
   }
 
-  const lastRecord = await prisma.banners.findFirst({
-    where: { userId: userId, id: bannerId },
+  const bannerClickInfoDoc = await prisma.clickInfo.findFirst({
+    where: { userIp: ip as string, bannerId },
   });
 
-  const clickCounter = lastRecord?.clickCounter ? lastRecord.clickCounter + 1 : 1;
+  const clickCounter = bannerClickInfoDoc?.clickCounter ? bannerClickInfoDoc.clickCounter + 1 : 1;
 
   const fullInfo = JSON.stringify({ ...rest, ip });
 
-  console.log();
-
-  await prisma.banners.updateMany({
-    where: {
-      id: bannerId,
-      userId,
-    },
-    data: {
-      clickCounter,
-      clickInformation: fullInfo,
-    },
-  });
+  if (!bannerClickInfoDoc) {
+    await prisma.clickInfo.create({
+      data: {
+        userIp: ip as string,
+        bannerId,
+        bannerPosition: rest.position,
+        clickCounter,
+        clickInformation: fullInfo,
+      },
+    });
+  } else {
+    await prisma.clickInfo.updateMany({
+      where: {
+        bannerId,
+      },
+      data: {
+        clickCounter,
+        clickInformation: fullInfo,
+      },
+    });
+  }
 
   return NextResponse.json({ message: 'Banner was updated' });
 }

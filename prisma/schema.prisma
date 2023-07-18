@@ -19,11 +19,10 @@ model User {
   hashedPassword String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  banners        Banners[]
 }
 
 model Banners {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  id                String      @id @default(auto()) @map("_id") @db.ObjectId
   backgroundCollor  String
   imageUrl          String
   imageHeight       Int
@@ -34,11 +33,17 @@ model Banners {
   buttonVariant     String
   buttonText        String
   isSpecialBanner   Boolean
-  userId            String   @db.ObjectId
-  createdAt         DateTime @default(now())
-  clickCounter      Int?     @default(0)
-  clickInformation  String?
-  position          Int      @default(0)
+  position          Int         @default(0)
+  clickInfo         ClickInfo[]
+}
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+model ClickInfo {
+  id               String  @id @default(auto()) @map("_id") @db.ObjectId
+  bannerId         String  @db.ObjectId
+  userIp           String
+  bannerPosition   Int     @default(0)
+  clickCounter     Int?    @default(0)
+  clickInformation String?
+
+  banner Banners @relation(fields: [bannerId], references: [id], onDelete: Cascade)
 }
