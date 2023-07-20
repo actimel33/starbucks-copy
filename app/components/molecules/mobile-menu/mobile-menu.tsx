@@ -30,7 +30,7 @@ export default function MobileMenu({ isOpen, navbarItems }: IProps) {
 
       <div className={mobileMenuBottom}>
         <Button>Sign in</Button>
-        <Button variant="dark">Join now</Button>
+        <Button variant="btn-dark">Join now</Button>
         <div>
           <Marker />
         </div>

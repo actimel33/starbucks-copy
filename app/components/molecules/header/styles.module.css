@@ -28,6 +28,10 @@
   align-items: center;
 }
 
+.navbarNavRight li:nth-child(2) {
+  margin-right: 16px;
+}
+
 .navbarNavItem:not(:first-child) {
   margin-left: 24px;
 }

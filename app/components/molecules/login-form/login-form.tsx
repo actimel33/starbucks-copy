@@ -131,7 +131,7 @@ export default function LoginForm() {
             <Link href="/">Forgot your password?</Link>
           </div>
           <div className={signinContainer}>
-            <Button variant="green">Sign in</Button>
+            <Button variant="btn-green">Sign in</Button>
           </div>
         </form>
         {loginError && <div className={clsx(serverError)}>{loginError}</div>}

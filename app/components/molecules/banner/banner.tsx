@@ -7,14 +7,13 @@ import Image from 'next/image';
 import Button from '@components/atoms/button';
 import { TButtonVariants } from '@components/atoms/button/button';
 
-import classes from './styles.module.css';
+import './styles.css';
 
 export interface IBannerProps {
   backgroundCollor: string;
   bannerTextCollor: string;
   buttonVariant: TButtonVariants;
   imageUrl: string;
-  imageHeight: number;
   isReverted: boolean;
   isSpecialBanner: boolean;
   buttonText: string;
@@ -30,7 +29,6 @@ export default function Banner({
   isSpecialBanner = false,
   backgroundCollor,
   imageUrl,
-  imageHeight,
   bannerTextCollor,
   buttonVariant,
   buttonText,
@@ -38,21 +36,6 @@ export default function Banner({
   bannerText,
   ...rest
 }: IBannerProps) {
-  const {
-    box,
-    gridCol2,
-    gridReversed,
-    textCenter,
-    imageContainer,
-    boxInner,
-    pyMd,
-    textLg,
-    textMd,
-    textXl,
-    textRegular,
-    textBold,
-  } = classes;
-
   const handleOnClick = useCallback(async () => {
     const infoOnTheUser = {
       bannerHeadingText,
@@ -75,24 +58,21 @@ export default function Banner({
   }, [bannerHeadingText, bannerText, buttonText, id, rest.position]);
 
   return (
-    <section
-      className={clsx(box, gridCol2, { [gridReversed]: !isReverted }, textCenter)}
-      style={{ backgroundColor: backgroundCollor }}
-    >
-      <div className={imageContainer} style={{ minHeight: imageHeight }}>
-        <Image alt="Banner" fill={true} src={imageUrl} />
+    <section className="box grid-col-2" style={{ backgroundColor: backgroundCollor }}>
+      <div className="image-container">
+        <Image alt="Banner" fill={true} objectFit="cover" objectPosition="center" src={imageUrl} unoptimized={true} />
       </div>
-      <div className={clsx(boxInner, pyMd)}>
-        <h2 className={clsx(isSpecialBanner ? textLg : textXl, textBold)} style={{ color: bannerTextCollor }}>
-          {bannerHeadingText}
-        </h2>
-        <p
-          className={clsx(isSpecialBanner ? textMd : textLg, isSpecialBanner ? textBold : textRegular)}
-          style={{ color: bannerTextCollor }}
-        >
+
+      <div className="box-text" style={{ color: bannerTextCollor }}>
+        <h2 className={clsx('text-xl', 'mb-md')}> {bannerHeadingText}</h2>
+        <p className={clsx('text-md', 'mb-md')} style={{ color: bannerTextCollor }}>
           {bannerText}
         </p>
-        <Button onClick={() => handleOnClick()} variant={buttonVariant}>
+        <Button
+          onClick={() => handleOnClick()}
+          style={{ color: bannerTextCollor, borderColor: bannerTextCollor }}
+          variant={'btn-dark-outlined'}
+        >
           {buttonText}
         </Button>
       </div>

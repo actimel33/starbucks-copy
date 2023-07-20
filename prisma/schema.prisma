@@ -25,14 +25,12 @@ model Banners {
   id                String      @id @default(auto()) @map("_id") @db.ObjectId
   backgroundCollor  String
   imageUrl          String
-  imageHeight       Int
   isReverted        Boolean
   bannerHeadingText String
   bannerText        String
   bannerTextCollor  String
   buttonVariant     String
   buttonText        String
-  isSpecialBanner   Boolean
   position          Int         @default(0)
   clickInfo         ClickInfo[]
 }

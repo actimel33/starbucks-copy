@@ -71,16 +71,22 @@ export default function Header() {
           {!session && !isLoading && (
             <>
               <li>
-                <Button href={Routes.LOGNIN_PAGE}>Sign in</Button>
+                <Button className={'btn-dark-outlined'} href={Routes.LOGNIN_PAGE}>
+                  Sign in
+                </Button>
               </li>
               <li>
-                <Button variant="dark">Join now</Button>
+                <Button className={'link'} variant="btn-dark">
+                  Join now
+                </Button>
               </li>
             </>
           )}
           {session && !isLoading && (
             <li>
-              <Button onClick={() => signOut()}>Log out</Button>
+              <Button onClick={() => signOut()} variant="btn-light-outlined">
+                Log out
+              </Button>
             </li>
           )}
         </ul>

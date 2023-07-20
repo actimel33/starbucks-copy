@@ -1,45 +1,36 @@
 'use client';
 
 import clsx from 'clsx';
-import { PropsWithChildren, useCallback } from 'react';
+import { PropsWithChildren } from 'react';
 
 import Link from 'next/link';
 
-import classes from './styles.module.css';
+import './styles.css';
 
-export type TButtonVariants = 'white' | 'light' | 'dark' | 'green';
+export type TButtonVariants = 'btn-light-outlined' | 'btn-dark-outlined' | 'btn-dark' | 'btn-green';
 
-interface IProps extends PropsWithChildren {
+interface IProps extends React.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   variant?: TButtonVariants;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   isLink?: boolean;
   href?: string;
+  className?: string;
 }
 
-export default function Button({ children, variant, onClick = () => {}, href }: IProps) {
-  const { btn, btnWhiteOutlined, btnDarkOutlined, btnLigthOutlined, btnGreen, link } = classes;
-  let className: string;
-
-  switch (variant) {
-    case 'dark':
-      className = btnDarkOutlined;
-      break;
-    case 'light':
-      className = btnLigthOutlined;
-      break;
-    case 'green':
-      className = btnGreen;
-      break;
-    default:
-      className = btnWhiteOutlined;
-  }
-
+export default function Button({
+  children,
+  variant = 'btn-light-outlined',
+  onClick = () => {},
+  href,
+  className,
+  ...rest
+}: IProps) {
   return !href ? (
-    <button className={clsx(btn, className)} onClick={e => onClick(e)}>
+    <button className={clsx('btn', 'text-sm', variant, className)} onClick={e => onClick(e)} {...rest}>
       {children}
     </button>
   ) : (
-    <Link className={clsx(btn, className, link)} href={href}>
+    <Link className={clsx('btn', 'link', className)} href={href} {...rest}>
       {children}
     </Link>
   );

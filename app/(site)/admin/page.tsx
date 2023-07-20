@@ -12,16 +12,14 @@ import PageLayout from '@components/organisms/page-layout';
 import { addBannerAction } from './actions';
 import classes from './styles.module.css';
 
-const buttonVariants = ['white', 'light', 'dark', 'green'];
+const buttonVariants = ['btn-light-outlined', 'btn-dark-outlined', 'btn-dark'];
 
 export interface IAdminFormDefaultValues {
   backgroundCollor: string;
   bannerTextCollor: string;
   buttonVariant: TButtonVariants;
   imageUrl: string;
-  imageHeight: number;
   isReverted: boolean;
-  isSpecialBanner: boolean;
   buttonText: string;
   bannerHeadingText: string;
   bannerText: string;
@@ -31,11 +29,9 @@ export interface IAdminFormDefaultValues {
 const defaultValues: IAdminFormDefaultValues = {
   backgroundCollor: '',
   imageUrl: '',
-  imageHeight: 0,
   isReverted: false,
   bannerTextCollor: '',
-  buttonVariant: 'white',
-  isSpecialBanner: false,
+  buttonVariant: 'btn-light-outlined',
   buttonText: '',
   bannerHeadingText: '',
   bannerText: '',
@@ -87,7 +83,7 @@ export default function Admin() {
                 <div>
                   <textarea className={clsx()} id="bannerHeadingText" required {...rest} />
                   <label className={clsx(pSm)} htmlFor="bannerHeadingText">
-                    <span>Add Head Text.</span>
+                    <span>Add Banner Head Text.</span>
                   </label>
                 </div>
               )}
@@ -123,20 +119,25 @@ export default function Admin() {
                 <div>
                   <input className={clsx()} id="bannerTextCollor" type="text" required {...rest} />
                   <label className={clsx(pSm)} htmlFor="bannerTextCollor">
-                    <span>Add banner text collor.</span>
+                    <span>Add banner text collor. (hex or rgba format)</span>
                   </label>
                 </div>
               )}
             />
-
             <Controller
               control={control}
-              name="imageHeight"
+              name="buttonVariant"
               render={({ field: { ...rest }, fieldState }) => (
                 <div>
-                  <input className={clsx()} id="imageHeight" type="number" {...rest} max={3000} min={0} required />
-                  <label className={clsx(pSm)} htmlFor="imageHeight">
-                    <span>Please add image height</span>
+                  <select {...rest}>
+                    {buttonVariants.map(value => (
+                      <option key={value} value={value}>
+                        {value}
+                      </option>
+                    ))}
+                  </select>
+                  <label className={clsx(pSm)} htmlFor="buttonVariant">
+                    <span>Specify the button please</span>
                   </label>
                 </div>
               )}
@@ -160,46 +161,8 @@ export default function Admin() {
                 </div>
               )}
             />
-
-            <Controller
-              control={control}
-              name="isSpecialBanner"
-              render={({ field: { onChange, value, ref }, fieldState }) => (
-                <div>
-                  <input
-                    ref={ref}
-                    checked={value}
-                    className={clsx()}
-                    id="isSpecialBanner"
-                    onChange={onChange} // send value to hook form
-                    type="checkbox"
-                  />
-                  <label className={clsx(pSm)} htmlFor="isSpecialBanner">
-                    <span>Should banner be special?</span>
-                  </label>
-                </div>
-              )}
-            />
-            <Controller
-              control={control}
-              name="buttonVariant"
-              render={({ field: { ...rest }, fieldState }) => (
-                <div>
-                  <select {...rest}>
-                    {buttonVariants.map(value => (
-                      <option key={value} value={value}>
-                        {value}
-                      </option>
-                    ))}
-                  </select>
-                  <label className={clsx(pSm)} htmlFor="buttonVariant">
-                    <span>Specify the button please</span>
-                  </label>
-                </div>
-              )}
-            />
             <div className={btnContainer}>
-              <Button variant="dark">Add Bunner</Button>
+              <Button variant="btn-dark">Add Bunner</Button>
             </div>
           </form>
         </div>

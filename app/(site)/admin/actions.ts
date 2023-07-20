@@ -15,7 +15,6 @@ export async function addBannerAction(props: IBannerProps) {
   await prisma.banners.create({
     data: {
       ...props,
-      imageHeight: Number(props.imageHeight),
       position: position,
     },
   });
