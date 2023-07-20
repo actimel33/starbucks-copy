@@ -15,7 +15,6 @@ export interface IBannerProps {
   buttonVariant: TButtonVariants;
   imageUrl: string;
   isReverted: boolean;
-  isSpecialBanner: boolean;
   buttonText: string;
   bannerHeadingText: string;
   bannerText: string;
@@ -26,7 +25,6 @@ export interface IBannerProps {
 export default function Banner({
   id,
   isReverted = false,
-  isSpecialBanner = false,
   backgroundCollor,
   imageUrl,
   bannerTextCollor,
